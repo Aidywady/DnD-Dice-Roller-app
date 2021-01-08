@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:descendantFocusability="beforeDescendants"
+    android:focusableInTouchMode="true" >
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:onClick="calculateRoll"
+        android:text="@string/roll_dice"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/NumberOfRolls"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:ems="10"
+                android:hint="@string/no_of_rolls"
+                android:inputType="number"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/textView3"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/d"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                app:layout_constraintBaseline_toBaselineOf="@+id/NumberOfRolls"
+                app:layout_constraintEnd_toStartOf="@+id/NumberOfSides"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/NumberOfRolls" />
+
+            <EditText
+                android:id="@+id/NumberOfSides"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:ems="10"
+                android:hint="@string/no_of_sides"
+                android:inputType="number"
+                android:textAlignment="center"
+                app:layout_constraintBaseline_toBaselineOf="@+id/textView3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/textView3" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/plus"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                app:layout_constraintBaseline_toBaselineOf="@+id/Modifier"
+                app:layout_constraintEnd_toStartOf="@+id/Modifier"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <EditText
+                android:id="@+id/Modifier"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:ems="10"
+                android:hint="@string/modifiers"
+                android:inputType="numberSigned"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/textView4"
+                app:layout_constraintTop_toBottomOf="@+id/NumberOfSides" />
+
+            <RadioGroup
+                android:id="@+id/RadioGroup1"
+                android:layout_width="match_parent"
+                android:layout_height="145dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/Modifier">
+
+                <RadioButton
+                    android:id="@+id/attack"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/attack" />
+
+                <RadioButton
+                    android:id="@+id/SaveOrAbility"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/saveOrAbility" />
+
+                <RadioButton
+                    android:id="@+id/other"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="@string/other" />
+            </RadioGroup>
+
+            <RadioGroup
+                android:id="@+id/RadioGroup2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="16dp">
+
+                <RadioButton
+                    android:id="@+id/regular"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/gray"
+                    android:checked="true"
+                    android:clickable="false"
+                    android:text="@string/regular_roll" />
+
+                <RadioButton
+                    android:id="@+id/advantage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:text="@string/advantage" />
+
+                <RadioButton
+                    android:id="@+id/disadvantage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:text="@string/disadvantage" />
+
+                <TextView
+                    android:id="@+id/d4Modifier"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/d4_modifier"
+                    android:textAlignment="center"
+                    android:textSize="18sp" />
+
+                <SeekBar
+                    android:id="@+id/d4SeekBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:max="20" />
+
+                <TextView
+                    android:id="@+id/d6Modifier"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/d6_modifier"
+                    android:textAlignment="center"
+                    android:textSize="18sp" />
+
+                <SeekBar
+                    android:id="@+id/d6SeekBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:max="20" />
+
+                <TextView
+                    android:id="@+id/d8Modifier"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/d8_modifier"
+                    android:textAlignment="center"
+                    android:textSize="18sp" />
+
+                <SeekBar
+                    android:id="@+id/d8SeekBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:max="20" />
+
+                <TextView
+                    android:id="@+id/d10Modifier"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/d10_modifier"
+                    android:textAlignment="center"
+                    android:textSize="18sp" />
+
+                <SeekBar
+                    android:id="@+id/d10SeekBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:max="20" />
+
+                <TextView
+                    android:id="@+id/d12Modifier"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/d12_modifier"
+                    android:textAlignment="center"
+                    android:textSize="18sp" />
+
+                <SeekBar
+                    android:id="@+id/d12SeekBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:max="20" />
+
+                <TextView
+                    android:id="@+id/d20Modifier"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/d20_modifier"
+                    android:textAlignment="center"
+                    android:textSize="18sp" />
+
+                <SeekBar
+                    android:id="@+id/d20SeekBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:max="20" />
+
+                <TextView
+                    android:id="@+id/d100Modifier"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/d100_modifier"
+                    android:textAlignment="center"
+                    android:textSize="18sp" />
+
+                <SeekBar
+                    android:id="@+id/d100SeekBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:max="20" />
+
+            </RadioGroup>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:onClick="openCalculator"
+        android:text="@string/calculator"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

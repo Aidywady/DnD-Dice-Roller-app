@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">DnD Dice Roller</string>
+    <string name="d">d</string>
+    <string name="no_of_rolls">no. of rolls</string>
+    <string name="no_of_sides">no. of sides</string>
+    <string name="modifiers">modifier</string>
+    <string name="roll_dice">Roll</string>
+    <string name="calculator">Open calculator</string>
+    <string name="plus">+</string>
+    <string name="minus">-</string>
+    <string name="times">*</string>
+    <string name="divide">/</string>
+    <string name="title_activity_main2">MainActivity</string>
+    <string name="attack">Attack Roll</string>
+    <string name="saveOrAbility">Ability check or Saving throw</string>
+    <string name="other">Other roll</string>
+    <string name="regular_roll">Regular roll</string>
+    <string name="advantage">Advantage</string>
+    <string name="disadvantage">Disadvantage</string>
+    <string name="auto_fill_in_no_of_sides">20</string>
+    <string name="auto_fill_in_no_of_rolls">1</string>
+    <string name="textView">TextView</string>
+    <string name="defaultResult">0</string>
+    <string name="number1">First number</string>
+    <string name="number2">Second number</string>
+    <string name="d4_modifier">+ 0d4 modifier</string>
+    <string name="d6_modifier">+ 0d6 modifier</string>
+    <string name="d8_modifier">+ 0d8 modifier</string>
+    <string name="d10_modifier">+ 0d10 modifier</string>
+    <string name="d12_modifier">+ 0d12 modifier</string>
+    <string name="d20_modifier">+ 0d20 modifier</string>
+    <string name="d100_modifier">+ 0d100 modifier</string>
+</resources>
