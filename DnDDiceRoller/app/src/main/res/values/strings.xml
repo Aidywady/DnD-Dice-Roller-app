@@ -10,7 +10,6 @@
     <string name="minus">-</string>
     <string name="times">*</string>
     <string name="divide">/</string>
-    <string name="title_activity_main2">MainActivity</string>
     <string name="attack">Attack Roll</string>
     <string name="saveOrAbility">Ability check or Saving throw</string>
     <string name="other">Other roll</string>

@@ -1,15 +1,10 @@
-package com.example.DnDDiceRoller;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.dnddiceroller;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.graphics.Rect;
 import android.os.Bundle;
-import android.text.method.KeyListener;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -18,6 +13,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -51,19 +49,10 @@ public class MainActivity extends AppCompatActivity {
         advantage = findViewById(R.id.advantage);
         disadvantage = findViewById(R.id.disadvantage);
         radioGroup = findViewById(R.id.RadioGroup1);
-        KeyListener listener = Text1.getKeyListener();
 
-        ColorStateList colorStateList = new ColorStateList(
-                new int[][]{
-                        new int[]{-android.R.attr.state_checked},
-                        new int[]{android.R.attr.state_checked}
-                },
-                new int[]{
-
-                        Color.argb(128, 0, 0, 0)
-                        , Color.argb(255, 255, 198, 7),
-                }
-        );
+        regular.setEnabled(false);
+        advantage.setEnabled(false);
+        disadvantage.setEnabled(false);
 
         radioGroup.setOnCheckedChangeListener((group, checkedId) -> {
 
@@ -71,43 +60,34 @@ public class MainActivity extends AppCompatActivity {
             if (attack.isChecked()) {
                 Text1.setText(R.string.auto_fill_in_no_of_rolls);
                 Text2.setText(R.string.auto_fill_in_no_of_sides);
-                Text1.setFocusableInTouchMode(false);
-                Text1.setKeyListener(null);
-                Text2.setFocusableInTouchMode(false);
-                Text2.setKeyListener(null);
-                Text1.setTextColor(ColorStateList.valueOf(Color.GRAY));
-                Text2.setTextColor(ColorStateList.valueOf(Color.GRAY));
-                regular.setButtonTintList(colorStateList);
+                Text1.setEnabled(false);
+                Text2.setEnabled(false);
+                regular.setEnabled(true);
+                advantage.setEnabled(true);
+                disadvantage.setEnabled(true);
                 regular.setClickable(true);
                 advantage.setClickable(true);
                 disadvantage.setClickable(true);
             } else if (saveOrAbility.isChecked()) {
                 Text1.setText(R.string.auto_fill_in_no_of_rolls);
                 Text2.setText(R.string.auto_fill_in_no_of_sides);
-                Text1.setFocusableInTouchMode(false);
-                Text1.setKeyListener(null);
-                Text2.setFocusableInTouchMode(false);
-                Text2.setKeyListener(null);
-                Text1.setTextColor(ColorStateList.valueOf(Color.GRAY));
-                Text2.setTextColor(ColorStateList.valueOf(Color.GRAY));
-                regular.setButtonTintList(colorStateList);
+                Text1.setEnabled(false);
+                Text2.setEnabled(false);
+                regular.setEnabled(true);
+                advantage.setEnabled(true);
+                disadvantage.setEnabled(true);
                 regular.setClickable(true);
                 advantage.setClickable(true);
                 disadvantage.setClickable(true);
             } else if (other.isChecked()) {
                 Text1.setText("");
                 Text2.setText("");
-                Text1.setFocusableInTouchMode(true);
-                Text1.setKeyListener(listener);
-                Text2.setFocusableInTouchMode(true);
-                Text2.setKeyListener(listener);
-                Text1.setTextColor(ColorStateList.valueOf(Color.BLACK));
-                Text2.setTextColor(ColorStateList.valueOf(Color.BLACK));
-                regular.setButtonTintList(ColorStateList.valueOf(Color.argb(128, 0, 0, 0)));
+                Text1.setEnabled(true);
+                Text2.setEnabled(true);
                 regular.setChecked(true);
-                regular.setClickable(false);
-                advantage.setClickable(false);
-                disadvantage.setClickable(false);
+                regular.setEnabled(false);
+                advantage.setEnabled(false);
+                disadvantage.setEnabled(false);
             }
 
 
@@ -260,7 +240,7 @@ public class MainActivity extends AppCompatActivity {
     int FinalRoll, d4Roll, d6Roll, d8Roll, d10Roll, d12Roll, d20Roll, d100Roll, Rolls, Sides, Modifier;
     String d4info, d6info, d8info, d10info, d12info, d20info, d100info;
 
-    public void calculateRoll(View view) {
+    public void calculateRoll(@SuppressWarnings("unused") View view) {
         Intent intent = new Intent(this, Result.class);
 
         EditText Text1 = findViewById(R.id.NumberOfRolls);
@@ -279,23 +259,37 @@ public class MainActivity extends AppCompatActivity {
 
         final Random myRandom = new Random();
 
-
-
         try {
             Rolls = Integer.parseInt(Text1.getText().toString());
         } catch (Exception e) {
-            Rolls = 1;
+            Toast.makeText(getApplicationContext(),"The number of rolls must be any value from 0 to 100",Toast.LENGTH_LONG).show();
+            return;
         }
         try {
             Sides = Integer.parseInt(Text2.getText().toString());
         } catch (Exception e) {
-            Sides = 20;
+            Toast.makeText(getApplicationContext(),"The number of sides must be any value from 0 to 1000",Toast.LENGTH_LONG).show();
+            return;
         }
         try {
             Modifier = Integer.parseInt(Text3.getText().toString());
         } catch (Exception e) {
-            Modifier = 0;
+            Toast.makeText(getApplicationContext(),"The modifier must be any value from -1000 to 1000",Toast.LENGTH_LONG).show();
+            return;
         }
+        if (Rolls < 0 || Rolls > 100) {
+            Toast.makeText(getApplicationContext(),"The number of rolls must be any value from 0 to 100",Toast.LENGTH_LONG).show();
+            return;
+        }
+        if (Sides < 1 || Sides > 1000) {
+            Toast.makeText(getApplicationContext(),"The number of sides must be any value from 0 to 1000",Toast.LENGTH_LONG).show();
+            return;
+        }
+        if (Modifier < -1000 || Modifier > 1000) {
+            Toast.makeText(getApplicationContext(),"The modifier must be any value from -1000 to 1000",Toast.LENGTH_LONG).show();
+            return;
+        }
+
 
         ArrayList<String> list = new ArrayList<>();
         ArrayList<String> d4list = new ArrayList<>();
@@ -306,6 +300,14 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<String> d20list = new ArrayList<>();
         ArrayList<String> d100list = new ArrayList<>();
 
+        FinalRoll = 0;
+        d4Roll = 0;
+        d6Roll = 0;
+        d8Roll = 0;
+        d10Roll = 0;
+        d12Roll = 0;
+        d20Roll = 0;
+        d100Roll = 0;
 
         for(int i = 0; i < Rolls; i++) {
             if(regular.isChecked()) {
@@ -399,20 +401,23 @@ public class MainActivity extends AppCompatActivity {
 
         if(FinalRoll == 20 && attack.isChecked()) {
             intent.putExtra("key0", "Natural 20!");
-            intent.putExtra("key1", (Rolls + "d" + Sides + " " + list + " + " + Modifier + d4info + d6info + d8info + d10info + d12info + d20info + d100info));
+            if (Modifier >= 0) intent.putExtra("key1", (Rolls + "d" + Sides + " " + list + " + " + Modifier + d4info + d6info + d8info + d10info + d12info + d20info + d100info));
+            else intent.putExtra("key1", (Rolls + "d" + Sides + " " + list + " - " + -Modifier + d4info + d6info + d8info + d10info + d12info + d20info + d100info));
         }
         else if(FinalRoll == 1 && attack.isChecked()) {
             intent.putExtra("key0", "Automatic fail!");
-            intent.putExtra("key1", (Rolls + "d" + Sides + " " + list + " + " + Modifier + d4info + d6info + d8info + d10info + d12info + d20info + d100info));
+            if (Modifier >= 0) intent.putExtra("key1", (Rolls + "d" + Sides + " " + list + " + " + Modifier + d4info + d6info + d8info + d10info + d12info + d20info + d100info));
+            else intent.putExtra("key1", (Rolls + "d" + Sides + " " + list + " - " + -Modifier + d4info + d6info + d8info + d10info + d12info + d20info + d100info));
         }
         else {
             FinalRoll += (Modifier + d4Roll + d6Roll + d8Roll + d10Roll + d12Roll + d20Roll + d100Roll);
             intent.putExtra("key0", String.valueOf(FinalRoll));
-            intent.putExtra("key1", (Rolls + "d" + Sides + " " + list + " + " + Modifier + d4info + d6info + d8info + d10info + d12info + d20info + d100info));
+            if (Modifier >= 0) intent.putExtra("key1", (Rolls + "d" + Sides + " " + list + " + " + Modifier + d4info + d6info + d8info + d10info + d12info + d20info + d100info));
+            else intent.putExtra("key1", (Rolls + "d" + Sides + " " + list + " - " + -Modifier + d4info + d6info + d8info + d10info + d12info + d20info + d100info));
         }
         startActivity(intent);
     }
-    public void openCalculator(View view) {
+    public void openCalculator(@SuppressWarnings("unused") View view) {
         Intent intent = new Intent(this, Calculator.class);
         startActivity(intent);
     }

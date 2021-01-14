@@ -1,9 +1,10 @@
-package com.example.DnDDiceRoller;
+package com.example.dnddiceroller;
 
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -18,7 +19,7 @@ public class Calculator extends AppCompatActivity {
 
 
 
-    public void addition(View view) {
+    public void addition(@SuppressWarnings("unused") View view) {
         TextView answer = findViewById(R.id.Answer);
         EditText text1 = findViewById(R.id.Number1);
         EditText text2 = findViewById(R.id.Number2);
@@ -36,7 +37,7 @@ public class Calculator extends AppCompatActivity {
         }
         answer.setText(String.valueOf(number1 + number2));
     }
-    public void subtraction(View view) {
+    public void subtraction(@SuppressWarnings("unused") View view) {
         TextView answer = findViewById(R.id.Answer);
         EditText text1 = findViewById(R.id.Number1);
         EditText text2 = findViewById(R.id.Number2);
@@ -54,7 +55,7 @@ public class Calculator extends AppCompatActivity {
         }
         answer.setText(String.valueOf(number1 - number2));
     }
-    public void multiplication(View view) {
+    public void multiplication(@SuppressWarnings("unused") View view) {
         TextView answer = findViewById(R.id.Answer);
         EditText text1 = findViewById(R.id.Number1);
         EditText text2 = findViewById(R.id.Number2);
@@ -72,7 +73,7 @@ public class Calculator extends AppCompatActivity {
         }
         answer.setText(String.valueOf(number1 * number2));
     }
-    public void division(View view) {
+    public void division(@SuppressWarnings("unused") View view) {
         TextView answer = findViewById(R.id.Answer);
         EditText text1 = findViewById(R.id.Number1);
         EditText text2 = findViewById(R.id.Number2);
@@ -87,6 +88,10 @@ public class Calculator extends AppCompatActivity {
             number2 = Integer.parseInt(text2.getText().toString());
         } catch (Exception e) {
             number2 = 1;
+        }
+        if (number2 == 0) {
+            Toast.makeText(getApplicationContext(),"Impossible to divide by 0",Toast.LENGTH_LONG).show();
+            return;
         }
         answer.setText(String.valueOf(number1 / number2));
     }

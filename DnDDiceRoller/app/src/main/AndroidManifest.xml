@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.DnDDiceRoller">
+    package="com.example.dnddiceroller">
 
     <application
         android:allowBackup="false"
@@ -10,12 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DnDDiceRoller">
         <activity
-            android:name=".Calculator"
-            android:parentActivityName=".MainActivity" />
+            android:name="com.example.dnddiceroller.Calculator"
+            android:parentActivityName="com.example.dnddiceroller.MainActivity" />
         <activity
-            android:name=".Result"
-            android:parentActivityName=".MainActivity" />
-        <activity android:name=".MainActivity">
+            android:name="com.example.dnddiceroller.Result"
+            android:parentActivityName="com.example.dnddiceroller.MainActivity" />
+        <activity android:name="com.example.dnddiceroller.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

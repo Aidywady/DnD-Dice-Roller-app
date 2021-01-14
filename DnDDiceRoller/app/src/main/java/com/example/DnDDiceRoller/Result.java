@@ -1,4 +1,4 @@
-package com.example.DnDDiceRoller;
+package com.example.dnddiceroller;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;

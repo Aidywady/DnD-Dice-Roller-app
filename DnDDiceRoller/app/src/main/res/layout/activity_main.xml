@@ -138,7 +138,6 @@
             </RadioGroup>
 
             <RadioGroup
-                android:id="@+id/RadioGroup2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="16dp">
@@ -147,7 +146,6 @@
                     android:id="@+id/regular"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:buttonTint="@color/gray"
                     android:checked="true"
                     android:clickable="false"
                     android:text="@string/regular_roll" />
